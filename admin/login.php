@@ -1,0 +1,182 @@
+<?php
+
+$is_invalid = false;
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
+    $mysqli = require __DIR__ . "/connect.php";
+
+    $sql = sprintf("SELECT * FROM admins
+                    WHERE email = '%s'",
+                    $mysqli->real_escape_string($_POST["email"]));
+    $result = $mysqli->query($sql);
+    $admins = $result->fetch_assoc();
+
+    if($admins){
+        if(password_verify($_POST["password"],$admins["password_hash"])){
+            session_start();
+
+            session_regenerate_id();
+            
+            $_SESSION["admins_id"] = $admins["id"];
+            header("Location: dashboard.php");
+            exit;
+        }
+    }
+    $is_invalid = true;
+
+}
+
+session_start();
+
+
+ 
+if (isset($_SESSION["admins_id"])){
+    $mysqli = require __DIR__ . "/connect.php";
+
+    $sql = "SELECT * FROM admins
+            WHERE id = {$_SESSION["admins_id"]}";
+    $result = $mysqli->query($sql);
+
+    $admins = $result->fetch_assoc();
+    header("Location: dashboard.php");
+}
+
+
+
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../styles/login/style.css" />
+    <title>Admin Signup</title>
+
+</head>
+
+<body>
+    <div class="modal-overlay" id="modalOverlay">
+		<div class="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Sign Up Success!</h5>
+					<button class="close-btn" id="closeBtn">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Congratulations! you can now Sign in.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form class="sign-in-form" method="post" required>
+                    <h2 class="title">Sign in</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Email" name="email" value = "<?= htmlspecialchars($_POST["email"] ?? "") ?>"/>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" name="password"/>
+                    </div>
+                    <input type="submit" value="Login" class="btn solid" />
+                    
+                    <?php if ($is_invalid): ?>
+					
+                    <em>email or password does not match</em>
+
+                    <?php endif; ?>
+
+
+                </form>
+                <form class="sign-up-form" id="signupForm" method="post" required>
+                    <h2 class="title">Sign up</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="firstname" placeholder="First name"  pattern="(?=.*[a-z]).{5,50}"
+                title="First name must contain atleast 5 and at most 50 characters" required/>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="lastname" placeholder="Last name" pattern="(?=.*[a-z]).{5,50}"
+                title="Last name must contain atleast 5 and at most 50 characters" required/>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" name="email" placeholder="Email" required/>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                required/>
+                    </div>
+                    <input type="submit" class="btn" value="Sign up" />
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>New to our community ?</h3>
+                    <p>
+                        Discover the new technology! Join us and take part on protecting our school
+                        community with C.I.T.E. Department's Shield-Ed+ as an Admin.
+                    </p>
+                    <button class="btn transparent" id="sign-up-btn">
+                        Sign up
+                    </button>
+                    <form action="index.html">
+                        <button class="btn transparent" id="sign-up-btn">
+                            Back
+                        </button>
+
+                    </form>
+
+                </div>
+                <img src="https://i.ibb.co/6HXL6q1/Privacy-policy-rafiki.png" class="image" alt="" />
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Admin Registration</h3>
+                    <p>
+                        Thank you for being part of C.I.T.E. Department's Shield-Ed+ as an admin, Your presence can help
+                        our school to be much more safer and peaceful. You can now login!
+                    </p>
+                    <button class="btn transparent" id="sign-in-btn">
+                        Sign in
+                    </button>
+                    <form action="index.html">
+                        <button class="btn transparent" id="sign-up-btn">
+                            Back
+                        </button>
+
+                    </form>
+
+                </div>
+                <img src="https://i.ibb.co/nP8H853/Mobile-login-rafiki.png" class="image" alt="" />
+            </div>
+        </div>
+    </div>
+
+    <script src="../styles/login/app.js"></script>
+    <script>
+        modalOverlay.addEventListener('click', (event) => {
+  if (event.target === modalOverlay) {
+    modalOverlay.style.display = 'none';
+  }
+});
+    </script>
+</body>
+
+</html>

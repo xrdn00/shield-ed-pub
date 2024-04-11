@@ -1,0 +1,75 @@
+<!-- 
+This file includes code from:
+- Button Design by jh3y, licensed under MIT License (https://codepen.io/jh3y/pen/PoGbxLp)
+- Matrix Design by Achraf Boujjou, licensed under MIT License (https://codepen.io/AchrafBoujjou/pen/RxjWXB)
+- Cyberpunk Theme by gwannon, licensed under GPL v3.0 (https://codepen.io/gwannon/pen/LYjvOLK)
+
+Modifications made by Imagine Dragons(3rd year BSIT Capstone Group Name from Phinma University of Iloilo) in 2024 to integrate into Shield-Ed+: Safety and Prevention App
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shield-Ed+: Safety and Prevention App</title>
+    <link rel="stylesheet" href="styles/index/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="styles/index/192px.png">
+    <meta name="theme-color" content="#ff7f27">
+    
+    
+
+</head>
+
+<body>
+    
+    <header id="head">
+        
+        <div id="brand"><input type="image" src="styles/index/192px.png" style="height: 50px; width: 50px;"><a href="#" style="text-decoration: none;"><h2 style="color: #ff7f27; width: 19vh;">Shield-Ed+</h2></a></div>
+        <nav>
+          <ul>
+            
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#safety">Safety101</a></li>
+            <li><a href="#about">About</a></li>
+            <li id="login"><a href="login.php" >Login</a></li>
+          </ul>
+        </nav>
+        <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+          <ul class="mobile-menu">
+            <li><a href="index.html">Home</a></li>
+            <div style="margin-bottom: 25px;"></div>
+            <li><a href="#team">Team</a></li>
+            <div style="margin-bottom: 25px;"></div>
+            <li><a href="#safety">Safety101</a></li>
+            <div style="margin-bottom: 25px;"></div>
+            <li><a href="#about">About</a></li>
+            <div style="margin-bottom: 25px;"></div>
+            <li id="login"><a href="login.php" >Login</a></li>
+            <div style="margin-bottom: 25px;"></div>
+          </ul>
+        </div>
+    </header>
+    <section class="hidden" id="home">
+        <input type="image" src="styles/index/ui.png" style="height: 220px; width: 220px;">
+        <h1></h1>
+        <h2 >Shield-Ed+: Safety & Prevention App</h2>
+
+        <h4>Protecting Your School Community</h2>
+
+    </section>
+
+
+    <script src="styles/index/showContents.js"></script>
+    <script src="installer.js" defer></script>
+
+</body>
+</body>
+
+</html>
