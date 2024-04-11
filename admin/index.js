@@ -161,7 +161,7 @@ function subscribeToPushNotifications() {
   navigator.serviceWorker.ready.then((registration) => {
     return registration.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: 'BDjaf5k8dzweenK-1b8I4nToKvF--YTRB5f-LxITSQtue0rr6Y8D6FMXVdPMFjqecGWe2T45H--XmjlP4NFmOB8', // Replace with your actual public key
+      applicationServerKey: '', // Replace with your actual public key
     });
   }).then((subscription) => {
     // Send the subscription details to your server
