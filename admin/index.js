@@ -1,3 +1,4 @@
+//animation for side menu
 const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
 
 sideLinks.forEach(item => {
@@ -194,6 +195,8 @@ function sendMessage() {
 
   });
 }
+//This is used when fcm notification is not yet implemented, it sends message then a notification will pop up
+//but with fcm notification this is now just a message.
 function StudentsendMessage() {
   const targetUserId = document.getElementById("adminid").value;
 
@@ -220,6 +223,7 @@ function callDeclined() {
   });
 
 }
+
 function callAccepted() {
   const targetUserId = Array.from(connectedUsers).toString();
 
@@ -250,6 +254,7 @@ function callhangup() {
 
 }
 
+//timestamp on when was the call started
 function callstarted(){
   const targetUserId = Array.from(connectedUsers).toString();
 
@@ -265,6 +270,8 @@ function callstarted(){
 
 }
 
+
+//if "need info" is sent to user it returns user info to admin
 function userInfo(){
   const targetUserId = Array.from(connectedUsers).toString();
   const data = userSendInfo().toString();
@@ -279,6 +286,7 @@ function userInfo(){
   });
 
 }
+
 function adminAskInfo(){
   const targetUserId = Array.from(connectedUsers).toString();
   const message = "need info";
@@ -935,7 +943,7 @@ async function callnotif(){
   sendMessage();
 }
 
-//implement camera switch front/back
+
 
 
 
