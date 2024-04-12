@@ -176,13 +176,7 @@ $date = date('Y-m-d-H:i:s-a')
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-            apiKey: "AIzaSyDO_k8XF0RnKNxjNLhTaIYvk52yT6xOkHY",
-            authDomain: "finalpwa-a9b4f.firebaseapp.com",
-            projectId: "finalpwa-a9b4f",
-            storageBucket: "finalpwa-a9b4f.appspot.com",
-            messagingSenderId: "336771751216",
-            appId: "1:336771751216:web:3248d79fb70d8f5043bcf5",
-            measurementId: "G-SZSQ2M0NTH"
+            //generate your own firebase config, the past config has been revoked for security reasons.
         };
 
         // Initialize Firebase
